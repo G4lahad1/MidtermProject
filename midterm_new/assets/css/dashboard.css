@@ -1,0 +1,449 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: #f4f6f9; /* Light grey background for content area */
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 240px;
+    background: #781016; /* HAU Maroon */
+    transition: all 0.5s ease;
+    z-index: 100;
+}
+
+.sidebar .logo-details {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: #600d11; /* Slightly darker maroon for logo area */
+}
+
+.sidebar .logo-details img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.sidebar .logo-details .logo_name {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.sidebar .nav-links {
+    margin-top: 20px;
+}
+
+.sidebar .nav-links li {
+    position: relative;
+    list-style: none;
+    height: 50px;
+}
+
+.sidebar .nav-links li a {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li a.active,
+.sidebar .nav-links li a:hover {
+    background: #9c141c; /* Lighter maroon for hover */
+}
+
+.sidebar .nav-links li i {
+    min-width: 60px;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+}
+
+.sidebar .nav-links li .link_name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+/* Bottom Logout Button */
+.sidebar .nav-links .log_out {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: #600d11;
+}
+
+/* Main Content Area */
+.home-section {
+    position: relative;
+    background: #f5f5f5;
+    min-height: 100vh;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+.home-section nav {
+    display: flex;
+    justify-content: space-between;
+    height: 80px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+    padding: 0 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar-button i {
+    font-size: 35px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.profile-details {
+    display: flex;
+    align-items: center;
+    background: #f5f6f8;
+    border: 2px solid #efefef;
+    border-radius: 6px;
+    height: 50px;
+    min-width: 190px;
+    padding: 0 15px 0 2px;
+}
+
+.profile-details img {
+    height: 40px;
+    width: 40px;
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.profile-details .admin_name {
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 10px;
+    white-space: nowrap;
+}
+
+/* Dashboard Content */
+.home-content {
+    padding: 20px;
+}
+
+.overview-boxes {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 26px;
+}
+
+.overview-boxes .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 3 - 15px);
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.right-side .box-topic {
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+}
+
+.right-side .number {
+    display: inline-block;
+    font-size: 28px;
+    margin-top: 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+.right-side .indicator {
+    display: flex;
+    align-items: center;
+}
+
+.right-side .indicator i {
+    height: 20px;
+    width: 20px;
+    background: #8fdac2;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+.right-side .indicator .text {
+    font-size: 12px;
+    color: #666;
+}
+
+.box .cart {
+    display: inline-block;
+    font-size: 32px;
+    height: 50px;
+    width: 50px;
+    background: #e6e6e6; /* Fallback */
+    line-height: 50px;
+    text-align: center;
+    color: #666;
+    border-radius: 12px;
+    margin-left: 15px;
+}
+
+/* Specific Card Colors */
+.box .cart.two {
+    color: #781016;
+    background: #fadddd;
+}
+
+.box .cart.three {
+    color: #2bd47d;
+    background: #c0f2d8;
+}
+
+/* Table Area */
+.sales-boxes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sales-boxes .box {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sales-boxes .recent-sales {
+    width: 65%;
+}
+
+.sales-boxes .top-sales {
+    width: 33%;
+}
+
+.sales-boxes .box .title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #781016; /* Maroon Title */
+}
+
+.sales-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+ul.details .topic {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #999;
+}
+
+ul.details li {
+    list-style: none;
+    margin-bottom: 14px;
+}
+
+ul.details li a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Status Badges */
+.status.pending {
+    padding: 4px 8px;
+    background: #fadddd;
+    color: #781016;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status.return {
+    padding: 4px 8px;
+    background: #c0f2d8;
+    color: #0e8544;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.button a {
+    color: #fff;
+    background: #781016;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.button a:hover {
+    background: #9c141c;
+}
+
+/* Right Side List */
+.top-sales li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.top-sales li:hover {
+    background: #e9ecef;
+}
+
+.top-sales li a {
+    text-decoration: none;
+}
+
+.top-sales li .product {
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+}
+
+.top-sales li .price {
+    font-size: 14px;
+    color: #781016;
+}
+
+/* --- SIDEBAR TOGGLE LOGIC --- */
+
+/* When sidebar has 'active' class, collapse it */
+.sidebar.active {
+    width: 60px;
+}
+
+/* Hide the logo name and links when collapsed */
+.sidebar.active .logo-details .logo_name,
+.sidebar.active .nav-links li .link_name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Center the icons when collapsed */
+.sidebar.active .nav-links li i {
+    min-width: 60px; /* Aligns icon in the center of the 60px bar */
+}
+
+/* Adjust the main content area to fill the space */
+.sidebar.active ~ .home-section {
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+/* Optional: Hide the logout text properly */
+.sidebar.active .nav-links .log_out {
+    width: 60px;
+}
+/* --- SEAMLESS ANIMATION FIX --- */
+
+/* 1. Base Setup (How it looks normally) */
+.sidebar .logo-details {
+    overflow: hidden;       /* Hides messy content during animation */
+    white-space: nowrap;    /* Prevents text from wrapping while closing */
+}
+
+.sidebar .logo-details img {
+    /* Setup the transition for smooth resizing */
+    transition: all 0.5s ease; 
+    min-width: 40px; /* Prevents squishing */
+}
+
+.sidebar .logo-details .logo_name {
+    /* Setup opacity transition */
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    transition-delay: 0.1s; /* Wait a bit before showing text when opening */
+}
+
+/* 2. Active State (Collapsed) */
+
+.sidebar.active .logo-details {
+    width: 60px;
+    padding: 0; 
+}
+
+/* Smoothly scale and center the logo */
+.sidebar.active .logo-details img {
+    width: 50px;    /* Grow larger */
+    margin: 0 5px;  /* (60px sidebar - 50px logo) / 2 = 5px margin on each side */
+    height: auto;
+}
+
+/* Fade out the text instead of removing it */
+.sidebar.active .logo-details .logo_name {
+    opacity: 0;           /* Make it invisible */
+    pointer-events: none; /* Make it unclickable */
+    transition-delay: 0s; /* Disappear immediately when clicking collapse */
+    width: 0;             /* Shrink width so it doesn't push the logo */
+}
+
+
+.btn-cancel {
+    background-color: #ff4d4d; /* Red */
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #cc0000; /* Darker Red on hover */
+}
+
+/* --- FIX FOR CURSOR ISSUES --- */
+a, button, .btn, .sidebar li, .sidebar li a {
+    cursor: pointer !important; /* Forces the 'Hand' icon */
+    user-select: none; /* Prevents text highlighting on double-click */
+}
+
+/* Specific fix for your cards/boxes if they are clickable */
+.box {
+    user-select: none;
+}
