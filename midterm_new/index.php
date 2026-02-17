@@ -17,31 +17,33 @@
             <img src="assets/css/photos/HAU Logo.png" alt="Holy Angel University Logo" class="logo">
             <h2>User Login</h2>
 
-                <form action="assets/actions/login.php" method="POST">
+            <form action="assets/actions/login.php" method="POST">
     
-    <?php
-    if (isset($_GET['error'])) {
-        $error_msg = "";
-        
-        if ($_GET['error'] == "invalid_password") {
-            $error_msg = "Incorrect username/password. Please try again.";
-        } elseif ($_GET['error'] == "user_not_found") {
-            $error_msg = "Incorrect username/password. Please try again.";
-        }
-        
-        // Only display the div if there is a message
-        if ($error_msg) {
-            echo '<div class="error-banner">' . $error_msg . '</div>';
-        }
-    }
-    ?>
-    <div class="input-group">
-        <input type="text" name="username" placeholder="Username/ID Number" required>
-    </div>
+                <?php
+                if (isset($_GET['error'])) {
+                    $error_msg = "";
+                    
+                    if ($_GET['error'] == "invalid_password") {
+                        $error_msg = "Incorrect username/password. Please try again.";
+                    } elseif ($_GET['error'] == "user_not_found") {
+                        $error_msg = "Incorrect username/password. Please try again.";
+                    }
+                    
+                    // Only display the div if there is a message
+                    if ($error_msg) {
+                        echo '<div class="error-banner">' . $error_msg . '</div>';
+                    }
+                }
+                ?>
+
+                <div class="input-group">
+                    <input type="text" name="username" placeholder="Username/ID Number" required>
+                </div>
                 
                 <div class="input-group">
                     <input type="password" name="password" placeholder="Password" required>
                 </div>
+                
                 <button type="submit" class="login-btn">Login</button>
                 <a href="#" class="forgot-link">Forgot Password?</a>
             </form>
