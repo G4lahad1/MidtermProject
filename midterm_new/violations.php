@@ -8,6 +8,36 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+$check_sql = "SELECT id, violation_date, penalty FROM violations WHERE status = 'Active'";
+$check_result = $conn->query($check_sql);
+
+if ($check_result->num_rows > 0) {
+    while ($row = $check_result->fetch_assoc()) {
+        $duration = 0;
+        $multiplier = "days"; // default
+
+        if (preg_match('/(\d+)\s*(Day|Week|Month)/i', $row['penalty'], $matches)) {
+            $count = intval($matches[1]);
+            $unit = strtolower($matches[2]);
+
+            // Convert everything to a date string format
+            if (strpos($unit, 'week') !== false) {
+                $multiplier = "weeks";
+            } elseif (strpos($unit, 'month') !== false) {
+                $multiplier = "months";
+            }
+
+            $violation_start = strtotime($row['violation_date']);
+            $expiration_date = strtotime("+$count $multiplier", $violation_start);
+
+            if (time() > $expiration_date) {
+                $update_id = $row['id'];
+                $conn->query("UPDATE violations SET status = 'Resolved' WHERE id = $update_id");
+            }
+        }
+    }
+}
+
 $user_id = $_SESSION['user_id'];
 
 // 2. Fetch Violations
@@ -90,41 +120,9 @@ $status_icon = ($active_violations > 0) ? 'bx-error' : 'bx-check-shield';
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="logo-details">
-            <img src="assets/css/photos/HAU logo.png" alt="HAU Logo">
-            <span class="logo_name">HAU Library</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="dashboard.php"><i class='bx bx-grid-alt'></i><span class="link_name">Dashboard</span></a></li>
-            <li><a href="reserve.php"><i class='bx bx-calendar-plus'></i><span class="link_name">Reserve Room</span></a></li>
-            <li><a href="history.php"><i class='bx bx-history'></i><span class="link_name">My History</span></a></li>
-            <li><a href="violations.php" class="active"><i class='bx bx-error-circle'></i><span class="link_name">Violations</span></a></li>
-            <li><a href="profile.php"><i class='bx bx-user'></i><span class="link_name">Profile</span></a></li>
-            <li class="log_out"><a href="logout.php"><i class='bx bx-log-out'></i><span class="link_name">Log Out</span></a></li>
-        </ul>
-    </nav>
+  <?php include 'assets/includes/sidebar.php'; ?>
+  <?php include 'assets/includes/topbar.php'; ?>
 
-    <section class="home-section">
-        <nav class="top-navbar">
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Violations & Status</span>
-            </div>
-            
-            <div class="profile-details">
-                <?php
-                    $profilePic = "https://via.placeholder.com/40";
-                    if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])) {
-                        $profilePic = 'data:image/jpeg;base64,' . base64_encode($_SESSION['profile_image']);
-                    }
-                    $displayName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Student';
-                ?>
-                <img src="<?php echo $profilePic; ?>" alt="profile">
-                <span class="admin_name"><?php echo $displayName; ?></span>
-                <i class='bx bx-chevron-down'></i>
-            </div>
-        </nav>
 
 <div class="home-content">
     <div class="sales-boxes">

@@ -137,42 +137,10 @@ if (isset($_GET['msg'])) {
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="logo-details">
-            <img src="assets/css/photos/HAU logo.png" alt="HAU Logo">
-            <span class="logo_name">HAU Library</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="dashboard.php"><i class='bx bx-grid-alt'></i><span class="link_name">Dashboard</span></a></li>
-            <li><a href="reserve.php"><i class='bx bx-calendar-plus'></i><span class="link_name">Reserve Room</span></a></li>
-            <li><a href="history.php"><i class='bx bx-history'></i><span class="link_name">My History</span></a></li>
-            <li><a href="violations.php"><i class='bx bx-error-circle'></i><span class="link_name">Violations</span></a></li>
-            <li><a href="profile.php" class="active"><i class='bx bx-user'></i><span class="link_name">Profile</span></a></li>
-            <li class="log_out"><a href="logout.php"><i class='bx bx-log-out'></i><span class="link_name">Log Out</span></a></li>
-        </ul>
-    </nav>
+  <?php include 'assets/includes/sidebar.php'; ?>
+     <?php include 'assets/includes/topbar.php'; ?>
 
-    <section class="home-section">
-        <nav class="top-navbar">
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">My Profile</span>
-            </div>
             
-            <div class="profile-details">
-                <?php
-                    // Navbar Profile Logic
-                    $profilePic = "https://via.placeholder.com/40";
-                    if (!empty($user['profile_image'])) {
-                        $profilePic = 'data:image/jpeg;base64,' . base64_encode($user['profile_image']);
-                    }
-                ?>
-                <img src="<?php echo $profilePic; ?>" alt="profile">
-                <span class="admin_name"><?php echo htmlspecialchars($user['full_name']); ?></span>
-                <i class='bx bx-chevron-down'></i>
-            </div>
-        </nav>
-
         <div class="home-content">
             <div class="profile-card">
                 
@@ -180,7 +148,7 @@ if (isset($_GET['msg'])) {
                     <div class="alert <?php echo $msg_type; ?>"><?php echo $msg; ?></div>
                 <?php endif; ?>
 
-                <form action="update_profile.php" method="POST" enctype="multipart/form-data">
+                <form action="assets/actions/update_profile.php" method="POST" enctype="multipart/form-data">
                     <div class="profile-img-container">
                         <img src="<?php echo $profilePic; ?>" class="profile-img-lg" id="previewImg">
                         
@@ -198,7 +166,7 @@ if (isset($_GET['msg'])) {
 
                 <div class="section-title">Change Password</div>
                 
-                <form action="update_profile.php" method="POST">
+                <form action="assets/actions/update_profile.php" method="POST">
                     <input type="hidden" name="action" value="change_password">
                     
                     <div class="form-group">

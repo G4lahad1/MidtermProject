@@ -28,72 +28,9 @@ $rooms_result = $conn->query($rooms_sql);
 </head>
 <body>
 
-    <nav class="sidebar">
-        <div class="logo-details">
-            <img src="assets/css/photos/HAU logo.png" alt="HAU Logo">
-            <span class="logo_name">HAU Library</span>
-        </div>
-        <ul class="nav-links">
-            <li>
-                <a href="dashboard.php">
-                    <i class='bx bx-grid-alt'></i>
-                    <span class="link_name">Dashboard</span>
-                </a>
-            </li>
-            <li>
-                <a href="reserve.php" class="active">
-                    <i class='bx bx-calendar-plus'></i>
-                    <span class="link_name">Reserve Room</span>
-                </a>
-            </li>
-            <li>
-                <a href="history.php">
-                    <i class='bx bx-history'></i>
-                    <span class="link_name">My History</span>
-                </a>
-            </li>
-            <li>
-                <a href="violations.php">
-                    <i class='bx bx-error-circle'></i>
-                    <span class="link_name">Violations</span>
-                </a>
-            </li>
-            <li>
-                <a href="profile.php">
-                    <i class='bx bx-user'></i>
-                    <span class="link_name">Profile</span>
-                </a>
-            </li>
-            <li class="log_out">
-                <a href="index.php">
-                    <i class='bx bx-log-out'></i>
-                    <span class="link_name">Log Out</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+   <?php include 'assets/includes/sidebar.php'; ?>
+     <?php include 'assets/includes/topbar.php'; ?>
 
-    <section class="home-section">
-        <nav class="top-navbar">
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Reserve a Room</span>
-            </div>
-            
-            <div class="profile-details">
-                <?php
-                    // Profile Logic
-                    $profilePic = "https://via.placeholder.com/40";
-                    if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])) {
-                        $profilePic = 'data:image/jpeg;base64,' . base64_encode($_SESSION['profile_image']);
-                    }
-                    $displayName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Student';
-                ?>
-                <img src="<?php echo $profilePic; ?>" alt="profile">
-                <span class="admin_name"><?php echo $displayName; ?></span>
-                <i class='bx bx-chevron-down'></i>
-            </div>
-        </nav>
 
         <div class="home-content">
             <div class="sales-boxes">
@@ -112,7 +49,7 @@ $rooms_result = $conn->query($rooms_sql);
                         ?>
                     </div>
 
-                    <form action="process_reservation.php" method="POST" style="margin-top: 10px;">
+                    <form action="assets/actions/process_reservation.php" method="POST" style="margin-top: 10px;">
                         
                         <div style="margin-bottom: 15px;">
                             <label style="font-weight: 500; display: block; margin-bottom: 5px;">Select Room:</label>
@@ -145,7 +82,7 @@ $rooms_result = $conn->query($rooms_sql);
                         </div>
 
                         <div class="button" style="text-align: left;">
-                            <button type="submit" style="background: #0A2558; color: #fff; padding: 10px 25px; border: none; border-radius: 4px; font-size: 15px; cursor: pointer;">
+                            <button type="submit" style="background: #119939; color: #fff; padding: 10px 25px; border: none; border-radius: 4px; font-size: 15px; cursor: pointer;">
                                 Confirm Reservation
                             </button>
                         </div>

@@ -155,43 +155,11 @@ $result = $stmt->get_result();
     </style>
 </head>
 <body>
+    <?php include 'assets/includes/sidebar.php'; ?>
+     <?php include 'assets/includes/topbar.php'; ?>
 
-    <nav class="sidebar">
-        <div class="logo-details">
-            <img src="assets/css/photos/HAU logo.png" alt="HAU Logo">
-            <span class="logo_name">HAU Library</span>
-        </div>
-        <ul class="nav-links">
-            <li><a href="dashboard.php"><i class='bx bx-grid-alt'></i><span class="link_name">Dashboard</span></a></li>
-            <li><a href="reserve.php"><i class='bx bx-calendar-plus'></i><span class="link_name">Reserve Room</span></a></li>
-            <li><a href="history.php" class="active"><i class='bx bx-history'></i><span class="link_name">My History</span></a></li>
-            <li><a href="violations.php"><i class='bx bx-error-circle'></i><span class="link_name">Violations</span></a></li>
-            <li><a href="profile.php"><i class='bx bx-user'></i><span class="link_name">Profile</span></a></li>
-            <li class="log_out"><a href="logout.php"><i class='bx bx-log-out'></i><span class="link_name">Log Out</span></a></li>
-        </ul>
-    </nav>
 
-    <section class="home-section">
-        <nav class="top-navbar">
-            <div class="sidebar-button">
-                <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Reservation History</span>
-            </div>
-            
-            <div class="profile-details">
-                <?php
-                    $profilePic = "https://via.placeholder.com/40";
-                    if (isset($_SESSION['profile_image']) && !empty($_SESSION['profile_image'])) {
-                        $profilePic = 'data:image/jpeg;base64,' . base64_encode($_SESSION['profile_image']);
-                    }
-                    $displayName = isset($_SESSION['name']) ? htmlspecialchars($_SESSION['name']) : 'Student';
-                ?>
-                <img src="<?php echo $profilePic; ?>" alt="profile">
-                <span class="admin_name"><?php echo $displayName; ?></span>
-                <i class='bx bx-chevron-down'></i>
-            </div>
-        </nav>
-
+    
         <div class="home-content">
             <div class="sales-boxes">
                 <div class="recent-sales box" style="width: 100%;">
@@ -252,7 +220,7 @@ $result = $stmt->get_result();
                     <h3>Cancel Reservation?</h3>
                     <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
                     
-                    <form action="cancel_reservation.php" method="POST">
+                    <form action="assets/actions/cancel_reservation.php" method="POST">
                         <input type="hidden" name="reservation_id" id="modal_reservation_id" value="">
                         
                         <div class="modal-buttons">

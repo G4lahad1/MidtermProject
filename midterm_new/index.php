@@ -17,16 +17,16 @@
             <img src="assets/css/photos/HAU Logo.png" alt="Holy Angel University Logo" class="logo">
             <h2>User Login</h2>
 
-                <form action="login.php" method="POST">
+                <form action="assets/actions/login.php" method="POST">
     
     <?php
     if (isset($_GET['error'])) {
         $error_msg = "";
         
         if ($_GET['error'] == "invalid_password") {
-            $error_msg = "Incorrect password. Please try again.";
+            $error_msg = "Incorrect username/password. Please try again.";
         } elseif ($_GET['error'] == "user_not_found") {
-            $error_msg = "User ID not found.";
+            $error_msg = "Incorrect username/password. Please try again.";
         }
         
         // Only display the div if there is a message
