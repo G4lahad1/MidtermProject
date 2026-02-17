@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-// --- CONFIG FOR SIDEBAR ---
+// --- CONFIG FOR SIDEBAR OUTPUT AND ACTIVE BAR---
 $current_page = 'dashboard'; 
 $page_title = 'Student Dashboard';
 // --------------------------
@@ -72,7 +72,9 @@ if ($active_violations > 0) {
     $p_icon = "bx-error-circle";
     $p_style = "color: #e74c3c;"; 
     $p_icon_bg = "background: #fdedec; color: #e74c3c;"; 
-} else {
+} 
+
+else {
     $p_status = "Clear";
     $p_text = "Good Standing";
     $p_icon = "bx-check-shield";
@@ -97,9 +99,7 @@ if ($active_violations > 0) {
 <body>
 
     <?php include 'assets/includes/sidebar.php'; ?>
-     <?php include 'assets/includes/topbar.php'; ?>
-
-  
+    <?php include 'assets/includes/topbar.php'; ?>
 
         <div class="home-content">
             <div class="overview-boxes">
@@ -155,8 +155,8 @@ if ($active_violations > 0) {
                     
                     <?php if (empty($my_reservations)): ?>
                         <div style="padding: 20px; color: #666;">No reservations found. <a href="reserve.php" style="color:#0A2558; font-weight:bold;">Book a room now.</a></div>
-                    <?php else: ?>
                     
+                    <?php else: ?>
                     <div class="sales-details">
 
                         <ul class="details">
@@ -186,7 +186,9 @@ if ($active_violations > 0) {
                                 <li><span class="status <?php echo $status_class; ?>"><?php echo ucfirst($res['status']); ?></span></li>
                             <?php endforeach; ?>
                         </ul>
+
                     </div>
+                    
                     <?php endif; ?>
 
                     <div class="button">
