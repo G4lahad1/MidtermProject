@@ -7,7 +7,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: index.php");
     exit;
 }
-
+$current_page = 'reserve'; 
+$page_title = 'Room Reservation';
 //  Fetch Rooms for the Dropdown
 $rooms_sql = "SELECT * FROM rooms ORDER BY room_name ASC";
 $rooms_result = $conn->query($rooms_sql);
@@ -129,3 +130,4 @@ $rooms_result = $conn->query($rooms_sql);
 </script>
 </body>
 </html>
+
