@@ -10,8 +10,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST['password'];
 
     // 1. Fetch the user
-    $sql = "SELECT id, username, password, full_name, profile_image FROM users WHERE username = '$user'";
-    $result = $conn->query($sql);
+    $sql = "SELECT id, username, password, full_name, profile_image FROM users WHERE username = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     // 2. Check if user exists
     if ($result->num_rows == 1) {
@@ -35,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     header("Location: ../../index.php?error=invalid_credentials");
     exit;
-    
+
+    $stmt->close();
     $conn->close();
 }
 ?>
