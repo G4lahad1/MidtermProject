@@ -2,7 +2,7 @@
         <nav class="top-navbar">
             <div class="sidebar-button">
                 <i class='bx bx-menu sidebarBtn'></i>
-                <span class="dashboard">Student Dashboard</span>
+                <span class="dashboard"><?= $page_title ?></span>
             </div>
             
             <div class="profile-details">
