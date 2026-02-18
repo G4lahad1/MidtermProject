@@ -4,24 +4,23 @@ session_start();
 include '../includes/db_connection.php'; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
-    // Sanitize input to prevent basic SQL injection
+    
+    // Sanitize input
     $user = $conn->real_escape_string($_POST['username']);
     $pass = $_POST['password'];
 
-    // Prepare execute method
-    $sql = "SELECT id, username, password, full_name, profile_image FROM users WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param('i', $user);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    // 1. Fetch the user
+    $sql = "SELECT id, username, password, full_name, profile_image FROM users WHERE username = '$user'";
+    $result = $conn->query($sql);
 
+    // 2. Check if user exists
     if ($result->num_rows == 1) {
-        // User found, now check password
         $row = $result->fetch_assoc();
         
-        if ($pass === $row['password']) {
-            // Password Correct: Start Session
+        // 3. Verify the password hash
+        if (password_verify($pass, $row['password'])) {
+            
+            // --- SUCCESS ---
             $_SESSION['profile_image'] = $row['profile_image'];
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['username'];
@@ -30,24 +29,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             header("Location: ../../dashboard.php");
             exit;
-            
-        } 
-
-        else {
-            // Password Incorrect
-            header("Location: ../../index.php?error=invalid_password");
-            exit;
         }
-    } 
-
-    else {
-        // User not found
-        header("Location: ../../index.php?error=user_not_found");
-        exit;
     }
+
     
-    $stmt->close();
+    header("Location: ../../index.php?error=invalid_credentials");
+    exit;
+    
     $conn->close();
 }
-
 ?>
