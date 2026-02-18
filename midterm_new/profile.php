@@ -8,6 +8,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+// --- CONFIG FOR SIDEBAR OUTPUT AND ACTIVE BAR---
+$current_page = 'profile'; 
+$page_title = 'Student Profile';
+// --------------------------
+
 $user_id = $_SESSION['user_id'];
 
 // 2. Fetch User Details
@@ -42,7 +47,6 @@ if (isset($_GET['msg'])) {
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    
     <style>
         /* Profile Specific Styles */
         .profile-card {
@@ -136,11 +140,9 @@ if (isset($_GET['msg'])) {
     </style>
 </head>
 <body>
-
-  <?php include 'assets/includes/sidebar.php'; ?>
-     <?php include 'assets/includes/topbar.php'; ?>
-
-            
+    <?php include 'assets/includes/sidebar.php'; ?>
+    <?php include 'assets/includes/topbar.php'; ?>
+     
         <div class="home-content">
             <div class="profile-card">
                 
