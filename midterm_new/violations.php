@@ -8,6 +8,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+// --- CONFIG FOR SIDEBAR OUTPUT AND ACTIVE BAR---
+$current_page = 'violations'; 
+$page_title = 'Student Violations';
+// --------------------------
+
 $check_sql = "SELECT id, violation_date, penalty FROM violations WHERE status = 'Active'";
 $check_result = $conn->query($check_sql);
 
