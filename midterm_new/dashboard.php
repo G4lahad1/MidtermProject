@@ -192,7 +192,7 @@ else {
                     <?php endif; ?>
 
                     <div class="button">
-                        <a href="#">See All</a>
+                        <a href="history.php">See All</a>
                     </div>
                 </div>
                 
@@ -212,3 +212,4 @@ else {
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
