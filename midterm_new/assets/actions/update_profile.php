@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // --- CASE 2: CHANGE PASSWORD ---
+
     elseif (isset($_POST['action']) && $_POST['action'] == 'change_password') {
         
         $current_pass = $_POST['current_password'];
@@ -53,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        // Check Old Password
+
         $sql = "SELECT password FROM users WHERE id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $user_id);
@@ -61,14 +62,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
-        // Note: We are using simple text comparison since your login.php does that.
-        // In a real app, use password_verify() and password_hash()
-        if ($current_pass === $row['password']) {
+
+        if (password_verify($current_pass, $row['password'])) {
             
-            // Update to New Password
+
+            $new_pass_hash = password_hash($new_pass, PASSWORD_DEFAULT);
+
+
             $update_sql = "UPDATE users SET password = ? WHERE id = ?";
             $update_stmt = $conn->prepare($update_sql);
-            $update_stmt->bind_param("si", $new_pass, $user_id);
+            
+
+            $update_stmt->bind_param("si", $new_pass_hash, $user_id); 
             
             if ($update_stmt->execute()) {
                 header("Location: ../../profile.php?msg=updated");
@@ -76,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("Location: ../../profile.php?msg=error");
             }
         } else {
+
             header("Location: ../../profile.php?msg=err_pass");
         }
     }
