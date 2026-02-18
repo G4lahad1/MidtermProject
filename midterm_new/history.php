@@ -8,6 +8,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+// --- CONFIG FOR SIDEBAR OUTPUT AND ACTIVE BAR---
+$current_page = 'history'; 
+$page_title = 'Reservation History';
+// --------------------------
+
 // 2. Fetch User's History
 $user_id = $_SESSION['user_id'];
 
@@ -156,15 +161,12 @@ $result = $stmt->get_result();
 </head>
 <body>
     <?php include 'assets/includes/sidebar.php'; ?>
-     <?php include 'assets/includes/topbar.php'; ?>
-
-
-    
+    <?php include 'assets/includes/topbar.php'; ?>
         <div class="home-content">
             <div class="sales-boxes">
                 <div class="recent-sales box" style="width: 100%;">
                     <div class="title">All Reservations</div>
-                    
+
                     <?php if ($result->num_rows > 0): ?>
                     <table>
                         <thead>
@@ -189,49 +191,52 @@ $result = $stmt->get_result();
                                         <span class="badge <?php echo strtolower($row['status']); ?>">
                                             <?php echo ucfirst($row['status']); ?>
                                         </span>
-                                             </td>
+                                    </td>
                                     <td>
                                         <?php if($row['status'] == 'pending'): ?>
-                                            
                                             <button type="button" class="btn-cancel" onclick="openModal(<?php echo $row['id']; ?>)">
                                                 Cancel
                                             </button>
 
                                         <?php else: ?>
                                             <span style="color: #ccc; font-size: 20px;">-</span>
+
                                         <?php endif; ?>
                                     </td>
                             <?php endwhile; ?>
                         </tbody>
                     </table>
+
                     <?php else: ?>
                         <p style="padding: 20px; color: #666; text-align: center;">You haven't made any reservations yet.</p>
                         <div class="button" style="text-align: center;">
                             <a href="reserve.php">Make a Reservation</a>
                         </div>
+
                     <?php endif; ?>
                 </div>
             </div>
         </div>
     </section>
-                <div id="cancelModal" class="modal-overlay">
-                <div class="modal-box">
-                    <i class='bx bx-error-circle' style="font-size: 50px; color: #e74c3c;"></i>
-                    <h3>Cancel Reservation?</h3>
-                    <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
+
+    <div id="cancelModal" class="modal-overlay">
+        <div class="modal-box">
+            <i class='bx bx-error-circle' style="font-size: 50px; color: #e74c3c;"></i>
+                <h3>Cancel Reservation?</h3>
+                <p>Are you sure you want to cancel this booking? This action cannot be undone.</p>
                     
-                    <form action="assets/actions/cancel_reservation.php" method="POST">
-                        <input type="hidden" name="reservation_id" id="modal_reservation_id" value="">
-                        
-                        <div class="modal-buttons">
-                            <button type="button" class="btn-close" onclick="closeModal()">No, Keep it</button>
-                            <button type="submit" class="btn-confirm">Yes, Cancel it</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                <form action="assets/actions/cancel_reservation.php" method="POST">
+                    <input type="hidden" name="reservation_id" id="modal_reservation_id" value="">    
+                    <div class="modal-buttons">
+                        <button type="button" class="btn-close" onclick="closeModal()">No, Keep it</button>
+                        <button type="submit" class="btn-confirm">Yes, Cancel it</button>
+                    </div>
+                </form>
+        </div>
+    </div>
 
     <script src="assets/js/main.js"></script>
+    
     <script>
     // Open the modal and set the ID
     function openModal(id) {
@@ -254,6 +259,7 @@ $result = $stmt->get_result();
             modal.style.display = "none";
         }
     }
-</script>
+
+    </script>
 </body>
 </html>
