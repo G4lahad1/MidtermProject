@@ -8,6 +8,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
+// --- CONFIG FOR SIDEBAR OUTPUT AND ACTIVE BAR---
+$current_page = 'reserve'; 
+$page_title = 'Reservation';
+// --------------------------
+
 // 2. Fetch Rooms for the Dropdown
 $rooms_sql = "SELECT * FROM rooms ORDER BY room_name ASC";
 $rooms_result = $conn->query($rooms_sql);
