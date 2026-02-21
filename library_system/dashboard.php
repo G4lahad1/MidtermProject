@@ -154,7 +154,7 @@ else {
                     <div class="title">Current & Recent Reservations</div>
                     
                     <?php if (empty($my_reservations)): ?>
-                        <div style="padding: 20px; color: #666;">No reservations found. <a href="reserve.php" style="color:#0A2558; font-weight:bold;">Book a room now.</a></div>
+                        <div style="padding: 20px; color: #666;">No reservations found. <a href="reserve.php" style="color:#c22727; font-weight:bold;">Book a room now.</a></div>
                     
                     <?php else: ?>
                     <div class="sales-details">
