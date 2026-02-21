@@ -15,8 +15,8 @@
     <div class="login-wrapper">
         <div class="login-card">
             <img src="assets/css/photos/HAU Logo.png" alt="Holy Angel University Logo" class="logo">
-            <h2>User Login</h2>
-
+            <h2>LIBSpaceHAU</h2>
+            <h3>User Login</h3>
                 <form action="assets/actions/login.php" method="POST">
     
     <?php
