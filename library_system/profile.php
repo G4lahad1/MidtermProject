@@ -71,7 +71,7 @@ if (isset($_GET['msg'])) {
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-            border: 3px solid #0A2558;
+            border: 3px solid #580a0a;
         }
 
         /* Camera Icon overlay for upload */
@@ -79,7 +79,7 @@ if (isset($_GET['msg'])) {
             position: absolute;
             bottom: 0;
             right: 0;
-            background: #0A2558;
+            background: #580a0a;
             color: #fff;
             width: 35px;
             height: 35px;
@@ -116,13 +116,13 @@ if (isset($_GET['msg'])) {
             margin: 30px 0 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid #eee;
-            color: #0A2558;
+            color: #851016;
             font-size: 18px;
             font-weight: 600;
         }
 
         .btn-save {
-            background: #0A2558;
+            background: #580a0a;
             color: white;
             border: none;
             padding: 10px 20px;
